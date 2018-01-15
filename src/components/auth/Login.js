@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as actions from './actions';
+import { loginUser } from '../../actions';
 
 class Login extends React.Component {
   constructor() {
@@ -30,6 +30,7 @@ class Login extends React.Component {
     const { fields } = this.state;
     return (
       <div>
+        <h1>Login</h1>
         {this.state.error ? <h1>Try Again</h1> : null}
         <div className="ui form">
           <form onSubmit={this.handleSubmit}>
@@ -37,7 +38,7 @@ class Login extends React.Component {
               <label>Username</label>
               <input
                 name="username"
-                placeholder="username"
+                placeholder="Username"
                 value={fields.username}
                 onChange={this.handleChange}
               />
@@ -47,7 +48,7 @@ class Login extends React.Component {
               <input
                 name="password"
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 value={fields.password}
                 onChange={this.handleChange}
               />
@@ -62,4 +63,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(connect(null, actions)(Login));
+export default withRouter(connect(null, { loginUser })(Login));
