@@ -1,5 +1,5 @@
-export const API_ROOT = `http://localhost:3001`;
-export const API_WS_ROOT = `ws://localhost:3001/cable`;
+export const API_ROOT = `https://hidden-phrases-backend.herokuapp.com`;
+export const API_WS_ROOT = `wss://hidden-phrases-backend.herokuapp.com/cable`;
 
 export const headers = {
   'Content-Type': 'application/json',
