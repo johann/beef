@@ -9,7 +9,10 @@ export const login = data => {
     method: 'POST',
     headers,
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => {
+    console.log('res', res);
+    return res.json();
+  });
 };
 
 export const signup = data => {
@@ -17,5 +20,8 @@ export const signup = data => {
     method: 'POST',
     headers,
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => {
+    console.log('res', res);
+    return res.json();
+  });
 };
