@@ -6,7 +6,7 @@ import Board from './Board';
 import SpyMasterBoard from './SpyMasterBoard';
 import TeamSelection from './TeamSelection';
 import withAuth from '../hocs/withAuth';
-import { fetchGame, updateBoard } from '../../actions';
+import { fetchGame, updateBoard, addMessage, addPlayer } from '../../actions';
 
 class Game extends Component {
   componentDidMount() {
@@ -38,6 +38,12 @@ class Game extends Component {
       case 'NEW_CLUE':
         this.props.changeClue(data.payload);
         break;
+      case 'NEW_MESSAGE':
+        this.props.addMessage(data.payload);
+        break;
+      case 'NEW_PLAYER':
+        this.props.addPlayer(data.payload);
+        break;
       default:
         console.log(data);
     }
@@ -65,5 +71,7 @@ const mapStateToProps = state => {
 };
 
 export default withAuth(
-  connect(mapStateToProps, { fetchGame, updateBoard })(Game)
+  connect(mapStateToProps, { fetchGame, updateBoard, addMessage, addPlayer })(
+    Game
+  )
 );

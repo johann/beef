@@ -2,6 +2,7 @@ import cardsReducer from './cards';
 import clueReducer from './clue';
 import playersReducer from './players';
 import identitiesReducer from './identities';
+import messagesReducer from './messages';
 
 const initialState = {
   id: null,
@@ -16,7 +17,8 @@ const initialState = {
     red_spies: {},
     innocent_bystander: {},
     assassin: {}
-  }
+  },
+  messages: []
 };
 
 export default (state = initialState, action) => {
@@ -28,7 +30,8 @@ export default (state = initialState, action) => {
         players: playersReducer(state.players, action),
         cards: cardsReducer(state.cards, action),
         clue: clueReducer(state.clue, action),
-        identities: identitiesReducer(state.identities, action)
+        identities: identitiesReducer(state.identities, action),
+        messages: messagesReducer(state.messages, action)
       };
     case 'REVEAL_IDENTITY':
       return {
@@ -41,6 +44,8 @@ export default (state = initialState, action) => {
       return { ...state, clue: clueReducer(state.clue, action) };
     case 'ADD_PLAYER':
       return { ...state, players: playersReducer(state.players, action) };
+    case 'NEW_MESSAGE':
+      return { ...state, messages: messagesReducer(state.messages, action) };
     default:
       return state;
   }

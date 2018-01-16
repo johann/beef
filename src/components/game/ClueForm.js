@@ -79,11 +79,7 @@ class ClueForm extends Component {
 
   renderClue() {
     const { clue } = this.props;
-    return clue.word ? (
-      <h3>{`${clue.word}: ${clue.number}`}</h3>
-    ) : (
-      <p>Waiting...</p>
-    );
+    return clue.word ? <h3>{`${clue.word}: ${clue.number}`}</h3> : '--';
   }
 
   render() {

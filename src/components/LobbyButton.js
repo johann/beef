@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default () => {
   return (
-    <div className="ui basic violet button">
-      <Link to="/games/new">Back to Lobby</Link>
-    </div>
+    <Link to="/games/new">
+      <div className="ui basic violet button">Back to Lobby</div>
+    </Link>
   );
 };

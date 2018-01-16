@@ -19,8 +19,8 @@ export const createGame = () => dispatch => {
 export const fetchGame = id => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
-  adapter.game.fetchGame(id).then(({ id, cards, clue, players }) => {
-    dispatch({ type: 'LOAD_GAME', id, cards, clue, players });
+  adapter.game.fetchGame(id).then(({ id, cards, clue, players, messages }) => {
+    dispatch({ type: 'LOAD_GAME', id, cards, clue, players, messages });
   });
 };
 
@@ -48,6 +48,10 @@ export const createGamePlayer = ({ role, gameId }) => dispatch => {
   adapter.game.createGamePlayer({ role, gameId }).then(player => {
     dispatch({ type: 'ADD_PLAYER', player });
   });
+};
+
+export const addPlayer = player => {
+  return { type: 'ADD_PLAYER', player };
 };
 
 export const fetchUser = () => dispatch => {
@@ -81,4 +85,15 @@ export const signupUser = (userData, history) => dispatch => {
 export const logoutUser = () => {
   localStorage.removeItem('token');
   return { type: 'LOGOUT_USER' };
+};
+
+export const createMessage = ({ gameId, text }) => dispatch => {
+  adapter.messages.createMessage({ gameId, text }).then(message => {
+    console.log('message', message);
+    dispatch({ type: 'NEW_MESSAGE', message });
+  });
+};
+
+export const addMessage = message => {
+  return { type: 'NEW_MESSAGE', message };
 };

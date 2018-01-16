@@ -3,7 +3,8 @@ export default (state, action) => {
     case 'LOAD_GAME':
       return action.players;
     case 'ADD_PLAYER':
-      return [...state, action.player];
+      const player = state.find(p => p.id === action.player.id);
+      return player ? state : [...state, action.player];
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import PlayerWordCard from './PlayerWordCard';
 import LobbyButton from '../LobbyButton';
+import Chat from '../chat/Chat';
 
 const Board = props => {
   const wordCards = props.cards.map(card => (
@@ -18,6 +19,7 @@ const Board = props => {
         </div>
         <div className="item">{renderClue(props.clue)}</div>
       </div>
+      <Chat />
       <LobbyButton />
     </div>
   );
@@ -27,7 +29,7 @@ const renderClue = clue => {
   return clue.word ? (
     <h2>{`${clue.word}: ${clue.number}`}</h2>
   ) : (
-    <p>Waiting for Clue..</p>
+    <p>Waiting for Spy Master...</p>
   );
 };
 
