@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PlayerWordCard from './PlayerWordCard';
-import LobbyButton from '../LobbyButton';
-import Chat from '../chat/Chat';
+import GameMenu from './GameMenu';
 
 const Board = props => {
   const wordCards = props.cards.map(card => (
@@ -19,8 +18,7 @@ const Board = props => {
         </div>
         <div className="item">{renderClue(props.clue)}</div>
       </div>
-      <Chat />
-      <LobbyButton />
+      <GameMenu />
     </div>
   );
 };

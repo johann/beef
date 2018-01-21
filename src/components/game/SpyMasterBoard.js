@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import MasterWordCard from './MasterWordCard';
 import ClueForm from './ClueForm';
-import Chat from '../chat/Chat';
-import LobbyButton from '../LobbyButton';
+import GameMenu from './GameMenu';
 
 const SpyMasterBoard = props => {
   const wordCards = props.cards.map(card => (
@@ -15,8 +14,7 @@ const SpyMasterBoard = props => {
     <div className="SpyMasterBoard">
       <div className="board">{wordCards}</div>
       <ClueForm />
-      <Chat />
-      <LobbyButton />
+      <GameMenu />
     </div>
   );
 };
