@@ -5,13 +5,18 @@ import { ActionCable } from 'react-actioncable-provider';
 import Board from './Board';
 import SpyMasterBoard from './SpyMasterBoard';
 import TeamSelection from './TeamSelection';
+import Loader from '../Loader';
 import withAuth from '../hocs/withAuth';
 import { fetchGame, updateBoard, addMessage, addPlayer } from '../../actions';
 
 class Game extends Component {
+  state = { loaded: false };
+
   componentDidMount() {
     const { fetchGame, match } = this.props;
-    fetchGame(match.params.id);
+    fetchGame(match.params.id).then(() => {
+      this.setState({ loaded: true });
+    });
   }
 
   currentPlayer() {
@@ -49,6 +54,14 @@ class Game extends Component {
     }
   };
 
+  renderGame() {
+    if (this.state.loaded) {
+      return this.hasJoined() ? this.renderBoard() : <TeamSelection />;
+    } else {
+      return <Loader />;
+    }
+  }
+
   render() {
     const { match } = this.props;
     return (
@@ -57,7 +70,7 @@ class Game extends Component {
           channel={{ channel: 'GamesChannel', game_id: match.params.id }}
           onReceived={this.handleSocketResponse}
         />
-        {this.hasJoined() ? this.renderBoard() : <TeamSelection />}
+        {this.renderGame()}
       </div>
     );
   }

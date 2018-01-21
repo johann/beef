@@ -27,9 +27,11 @@ export const playerJoin = game => {
 export const fetchGame = id => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
-  adapter.game.fetchGame(id).then(({ id, cards, clue, players, messages }) => {
-    dispatch({ type: 'LOAD_GAME', id, cards, clue, players, messages });
-  });
+  return adapter.game
+    .fetchGame(id)
+    .then(({ id, cards, clue, players, messages }) => {
+      dispatch({ type: 'LOAD_GAME', id, cards, clue, players, messages });
+    });
 };
 
 export const updateBoard = ({ cards }) => {
