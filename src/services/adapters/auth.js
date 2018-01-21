@@ -20,7 +20,6 @@ export const signup = data => {
     headers,
     body: JSON.stringify(data)
   }).then(res => {
-    console.log('res', res);
     return res.json();
   });
 };

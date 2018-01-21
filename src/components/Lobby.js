@@ -23,7 +23,6 @@ class Lobby extends Component {
         this.props.addGame(data.payload);
         break;
       case 'PLAYER_JOIN':
-        console.log('here');
         this.props.playerJoin(data.payload);
         break;
       default:

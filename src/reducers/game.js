@@ -7,6 +7,7 @@ import messagesReducer from './messages';
 const initialState = {
   id: null,
   cards: [],
+  turn: null,
   clue: {
     word: '',
     number: ''
@@ -27,6 +28,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         id: action.id,
+        turn: action.turn,
         players: playersReducer(state.players, action),
         cards: cardsReducer(state.cards, action),
         clue: clueReducer(state.clue, action),

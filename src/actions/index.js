@@ -29,8 +29,8 @@ export const fetchGame = id => dispatch => {
 
   return adapter.game
     .fetchGame(id)
-    .then(({ id, cards, clue, players, messages }) => {
-      dispatch({ type: 'LOAD_GAME', id, cards, clue, players, messages });
+    .then(({ id, cards, clue, players, messages, turn }) => {
+      dispatch({ type: 'LOAD_GAME', id, cards, clue, players, messages, turn });
     });
 };
 
@@ -76,7 +76,6 @@ export const loginUser = (username, password, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
   adapter.auth.login({ username, password }).then(user => {
-    console.log('RESPONSEEEEEE', user);
     if (!user.errors) {
       localStorage.setItem('token', user.token);
       dispatch({ type: 'SET_CURRENT_USER', user });
@@ -89,7 +88,6 @@ export const signupUser = (userData, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
   adapter.auth.signup(userData).then(user => {
-    console.log('RESPONSEEEEEE', user);
     if (!user.errors) {
       localStorage.setItem('token', user.token);
       dispatch({ type: 'SET_CURRENT_USER', user });
@@ -105,7 +103,6 @@ export const logoutUser = () => {
 
 export const createMessage = ({ gameId, text }) => dispatch => {
   adapter.messages.createMessage({ gameId, text }).then(message => {
-    console.log('message', message);
     dispatch({ type: 'NEW_MESSAGE', message });
   });
 };

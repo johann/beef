@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         games: state.games.map(game => {
-          console.log(game.id === action.game.id);
           if (game.id === action.game.id) {
             return action.game;
           } else {
