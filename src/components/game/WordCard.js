@@ -66,7 +66,9 @@ class WordCard extends Component {
     return (
       <div onClick={clickHandler} className={cssClass}>
         <div className="content">
-          <span className="center aligned word">{card.word}</span>
+          <div className="center aligned word">
+            <span className="codename">{card.word}</span>
+          </div>
         </div>
       </div>
     );

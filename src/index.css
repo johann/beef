@@ -1,16 +1,16 @@
 div.Game {
   padding-top: 10px;
-  max-width: 900px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div.Chat {
   padding-bottom: 10px;
-  max-width: 900px;
 }
 
 div.ClueForm {
   padding-top: 10px;
-  max-width: 900px;
 }
 
 div.chat-box {
@@ -50,7 +50,7 @@ div.board {
   grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(5, 20%);
   margin-top: 5%;
-  padding: 2px;
+  padding-bottom: 2px;
 }
 
 div.cell {
@@ -61,7 +61,7 @@ div.cell {
 
 div.ui.card.word-card {
   background-color: #ffefce;
-  min-height: 8vh;
+  min-height: 12vh;
   max-height: 14vh;
 }
 
@@ -79,6 +79,7 @@ div.ui.card.word-card div.content {
   width: 100%;
   height: 100%;
   padding: 7%;
+  margin-top: 7%;
   display: block;
 }
 
@@ -134,4 +135,8 @@ span.shrug {
   transition: background-color 0.75s ease;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+span.codename {
+  font-size: 125%;
 }
