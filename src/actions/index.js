@@ -66,33 +66,35 @@ export const addPlayer = player => {
 
 export const fetchUser = () => dispatch => {
   dispatch({ type: 'ASYNC_START' });
-
   adapter.auth.getCurrentUser().then(user => {
-    dispatch({ type: 'SET_CURRENT_USER', user });
+    if (!user.error) {
+      dispatch({ type: 'SET_CURRENT_USER', user });
+    }
   });
 };
 
 export const loginUser = (username, password, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
-
-  adapter.auth.login({ username, password }).then(user => {
-    if (!user.errors) {
+  return adapter.auth.login({ username, password }).then(user => {
+    if (!user.error) {
       localStorage.setItem('token', user.token);
       dispatch({ type: 'SET_CURRENT_USER', user });
       history.push('/games/new');
     }
+    return user;
   });
 };
 
 export const signupUser = (userData, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
-  adapter.auth.signup(userData).then(user => {
-    if (!user.errors) {
+  return adapter.auth.signup(userData).then(user => {
+    if (!user.error) {
       localStorage.setItem('token', user.token);
       dispatch({ type: 'SET_CURRENT_USER', user });
       history.push('/games/new');
     }
+    return user;
   });
 };
 

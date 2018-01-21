@@ -8,6 +8,7 @@ class Login extends React.Component {
     super();
     this.state = {
       error: false,
+      messages: [],
       fields: {
         username: '',
         password: ''
@@ -23,15 +24,32 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { fields: { username, password } } = this.state;
-    this.props.loginUser(username, password, this.props.history);
+    this.props.loginUser(username, password, this.props.history).then(res => {
+      if (res.error) {
+        this.setState({ error: true, messages: [res.error] });
+      }
+    });
   };
+
+  renderWarning() {
+    return (
+      <div className="ui warning message">
+        <div className="header">Try Again</div>
+        <ul className="list">
+          {this.state.messages.map((msg, i) => {
+            return <li key={i}>{msg}</li>;
+          })}
+        </ul>
+      </div>
+    );
+  }
 
   render() {
     const { fields } = this.state;
     return (
       <div>
         <h1>Login</h1>
-        {this.state.error ? <h1>Try Again</h1> : null}
+        {this.state.error ? this.renderWarning() : null}
         <div className="ui form">
           <form onSubmit={this.handleSubmit}>
             <div className="ui field">

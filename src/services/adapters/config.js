@@ -11,15 +11,16 @@ export const headers = {
 export const getWithToken = url => {
   const token = localStorage.getItem('token');
   return fetch(url, {
-    headers: { Authorization: token }
+    headers: { Authorization: token ? token : '' }
   }).then(res => res.json());
 };
 
 export const postWithToken = (url, data = {}) => {
   const token = localStorage.getItem('token');
+
   return fetch(url, {
     method: 'POST',
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token ? token : '' },
     body: JSON.stringify(data)
   }).then(res => res.json());
 };

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { createGamePlayer } from '../../actions';
+import capitalize from '../../services/capitalize';
 
 class TeamSelection extends Component {
   spyMaster(team) {
@@ -67,10 +69,6 @@ class TeamSelection extends Component {
     );
   }
 }
-
-const capitalize = str => {
-  return str[0].toUpperCase() + str.slice(1);
-};
 
 const mapStateToProps = state => {
   return {
