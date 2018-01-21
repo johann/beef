@@ -13,6 +13,7 @@ class App extends Component {
           <Route path="/login" component={Auth} />
           <Route path="/games/new" component={Lobby} />
           <Route path="/games/:id" component={Game} />
+          <Route path="/" component={Lobby} />
         </Switch>
       </div>
     );
