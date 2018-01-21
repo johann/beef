@@ -11,9 +11,17 @@ export const fetchCurrentGames = () => dispatch => {
 export const createGame = () => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
-  adapter.lobby.createGame().then(games => {
-    dispatch({ type: 'FETCH_CURRENT_GAMES', games });
+  adapter.lobby.createGame().then(game => {
+    dispatch({ type: 'NEW_GAME', game });
   });
+};
+
+export const addGame = game => {
+  return { type: 'NEW_GAME', game };
+};
+
+export const playerJoin = game => {
+  return { type: 'PLAYER_JOIN', game };
 };
 
 export const fetchGame = id => dispatch => {
@@ -66,9 +74,12 @@ export const loginUser = (username, password, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
   adapter.auth.login({ username, password }).then(user => {
-    localStorage.setItem('token', user.jwt);
-    dispatch({ type: 'SET_CURRENT_USER', user });
-    history.push('/games/new');
+    console.log('RESPONSEEEEEE', user);
+    if (!user.errors) {
+      localStorage.setItem('token', user.token);
+      dispatch({ type: 'SET_CURRENT_USER', user });
+      history.push('/games/new');
+    }
   });
 };
 
@@ -76,9 +87,12 @@ export const signupUser = (userData, history) => dispatch => {
   dispatch({ type: 'ASYNC_START' });
 
   adapter.auth.signup(userData).then(user => {
-    localStorage.setItem('token', user.jwt);
-    dispatch({ type: 'SET_CURRENT_USER', user });
-    history.push('/games/new');
+    console.log('RESPONSEEEEEE', user);
+    if (!user.errors) {
+      localStorage.setItem('token', user.token);
+      dispatch({ type: 'SET_CURRENT_USER', user });
+      history.push('/games/new');
+    }
   });
 };
 

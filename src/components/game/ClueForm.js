@@ -119,7 +119,7 @@ class ClueForm extends Component {
 
               <div className="five wide field">
                 <button className="ui large violet button" type="submit">
-                  Create Clue
+                  Give Clue
                 </button>
               </div>
             </div>

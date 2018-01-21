@@ -1,5 +1,7 @@
-export const API_ROOT = `http://localhost:3001`;
-export const API_WS_ROOT = `ws://localhost:3001/cable`;
+import keys from '../../keys';
+
+export const API_ROOT = keys.API_ROOT;
+export const API_WS_ROOT = keys.API_WS_ROOT;
 
 export const headers = {
   'Content-Type': 'application/json',
