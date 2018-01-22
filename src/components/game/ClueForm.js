@@ -11,16 +11,17 @@ class ClueForm extends Component {
   };
 
   wordIsValid(word) {
-    return !word.includes(' ');
+    return word !== '' && !word.includes(' ');
   }
 
   numberIsValid(number) {
-    return number >= 0 && number <= 9;
+    return number !== '' && number >= 0 && number <= 9;
   }
 
   handleSubmit = e => {
     e.preventDefault();
     const { fields } = this.state;
+
     if (this.numberIsValid(fields.number) && this.wordIsValid(fields.word)) {
       this.props.createClue(fields, this.props.gameId);
       this.setState({
