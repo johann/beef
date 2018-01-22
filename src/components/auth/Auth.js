@@ -18,7 +18,7 @@ class Auth extends Component {
         <h4>
           Don't have an account?{' '}
           <a onClick={this.handleClick} href="/">
-            Sign Up Here.
+            Click Here to Sign Up.
           </a>
         </h4>
         {this.state.signup ? <Signup /> : null}

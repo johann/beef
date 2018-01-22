@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { signupUser } from '../../actions';
 
 import capitalize from '../../services/capitalize';
+import { signupUser } from '../../actions';
 
 class Signup extends React.Component {
   constructor() {
@@ -42,7 +42,12 @@ class Signup extends React.Component {
       )
       .then(res => {
         if (res.error) {
-          this.setState({ error: true, messages: [res.user_errors] });
+          this.setState({
+            error: true,
+            messages: Object.keys(res.user_errors).map(k => ({
+              [k]: res.user_errors[k]
+            }))
+          });
         }
       });
   };
